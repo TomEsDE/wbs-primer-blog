@@ -1,7 +1,7 @@
 {
-  "name": "my-blog",
+  "name": "wbs-my-blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "final excercise for primer course",
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
