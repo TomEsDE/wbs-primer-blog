@@ -18,7 +18,7 @@ body {
 
 .nav-top {
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   width: 100%;
   /* border: 1px solid; */
   background-color: rgb(212, 79, 79);
@@ -44,6 +44,14 @@ section a {
 
 section a:hover {
   text-shadow: 1px 1px 2px black;
+}
+
+.zoom {
+  transition: transform 0.2s;
+}
+
+.zoom:hover {
+  transform: scale(1.2);
 }
 
 .center {
