@@ -24,27 +24,27 @@ body {
   background-color: rgb(212, 79, 79);
 }
 
-.nav-top section {
+.nav-top a {
   /*margin: 0px auto;*/
   padding: 20px 20px;
   margin: 0px auto;
   border: 0px solid;
 }
 
-.nav-top section a {
+.nav-top a {
   color: rgb(240, 180, 180);
   font-size: large;
   font-weight: bold;
 }
 
-section a {
+nav a {
   display:inline-block; /* inline-elements can't be animated -> block */
   text-decoration-line: none;
   text-shadow: 1px 1px 2px gray;
   transition: transform 0.2s;
 }
 
-section a:hover {
+nav a:hover {
   text-shadow: 1px 1px 2px black;
   transform: scale(1.2);
 }
