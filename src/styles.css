@@ -60,12 +60,11 @@ nav a:hover {
   background-color: rgb(145, 49, 78);
 }
 
-.sidebar section {
-  /*margin: 0px auto;*/
+/* .sidebar section {
   padding: 0px 0px 20px 0px;
   margin: 0px;
   border: 0px solid;
-}
+} */
 
 .main {
   width: 80%;
@@ -117,4 +116,36 @@ nav a:hover {
 
 .shadow {
   box-shadow: 5px 10px 10px rgb(148, 88, 88);
+}
+
+.sidebar_title {
+  font-style: italic;
+  color:rgb(197, 142, 102);
+  text-decoration: underline;
+}
+
+.latest_blog {
+  /* font-style: italic; */
+  margin-bottom: 35px;
+  padding: 10px 10px 10px 20px;
+}
+
+.latest_blog:hover {
+  background-color: rgb(107, 42, 61);
+}
+
+.latest_blog_date {
+  font-style: italic;
+  font-size: 8pt;
+  color:rgb(197, 156, 126);
+}
+
+.latest_blog_type {
+  font-size: 10pt;
+  font-style: italic;
+  color:rgb(183, 212, 79)
+}
+
+.latest_blog_title {
+  margin: 5px;
 }
