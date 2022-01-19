@@ -12,6 +12,7 @@
     <!--
     <div id="app">My blog</div>
     -->
+    <input id="pageType"  type="hidden" name="" value="gallery">
 
     <header class="header">
       <figure class="logo">
@@ -30,7 +31,9 @@
         <h3 class="sidebar_title">Latest Blog Entries</h3>
       </div>
 
-      <main class="main shadow">
+      <main id="main" class="main shadow">
+        <h2 class="main_title">Gallery</h2>
+        <div id="mainData" class="main_data"></div>
         <div class="gallery">
           <figure class="gallery_fig">
             <a href="../assets/images/primer-logo.jpg" target="_blank">
