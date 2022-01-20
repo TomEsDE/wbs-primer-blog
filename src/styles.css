@@ -1,12 +1,25 @@
+* {
+  color: lightgray;
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
   max-width: 1024px;
   background-color: rgb(197, 156, 126);
-  color: lightgray;
+}
+
+a {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
 }
 
 .shadow {
   box-shadow: 5px 10px 10px rgb(148, 88, 88);
+}
+
+.hide {
+  display: none;
 }
 
 /*
@@ -17,10 +30,21 @@ body {
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  height: 130px;
+  line-height: 130px;
   /* border: 1px solid; */
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
+  background-image: url('../assets/images/primer-logo.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.blog-title {
+  text-align: center;
+  font-size: 30pt;
+  font-weight: bold;  
+  text-shadow: 3px 3px 5px black;
+  vertical-align: middle;
 }
 
 .nav-top {
@@ -84,15 +108,19 @@ nav a:hover {
   /* margin-bottom: 20px; */
   padding: 10px;
   padding-bottom: 25px;
+  border-bottom: 1px dashed rgb(131, 84, 84);
+  text-decoration: none;
 }
 
 .odd {
-  margin-left: 30%;
+  padding-left: 30%;
   text-align: right;
+  background-color: rgb(105, 35, 54);
 }
 
 .even {
-  margin-right: 30%;
+  padding-right: 30%;
+  background-color: rgb(100, 35, 54);
 }
 
 .main_blog:hover {
@@ -100,8 +128,9 @@ nav a:hover {
 }
 
 .main_blog_detail {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
+  align-content: flex-end */
 }
 
 .main_blog_date {
@@ -113,17 +142,25 @@ nav a:hover {
 .main_blog_type {
   font-size: 10pt;
   font-style: italic;
-  color:rgb(183, 212, 79)
+  color:rgb(183, 212, 79);
+  padding-top: 5px;
 }
 
 .main_blog_title {
   margin: 5px 0 10px 0;
 }
 
+.main_blog_readmore {
+  font-size: x-small;
+  font-style: italic;
+  color:rgb(203, 212, 79);
+  margin-top: 10px;
+}
+
 .main_showmore {
   cursor: pointer;
   text-align: center;
-  background-color: rgba(107, 64, 39, 0.904);
+  background-color: rgb(100, 35, 54);
   font-size: 14pt;
   font-style: italic;
   padding: 10px;
