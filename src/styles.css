@@ -128,9 +128,7 @@ nav a:hover {
 }
 
 .main_blog_detail {
-  /* display: flex;
-  justify-content: space-between;
-  align-content: flex-end */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .main_blog_date {
@@ -148,6 +146,7 @@ nav a:hover {
 
 .main_blog_title {
   margin: 5px 0 10px 0;
+  color: rgba(104, 216, 141, 0.932);
 }
 
 .main_blog_readmore {
