@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My blog - final primer excercise</title>
+    <meta charset="UTF-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism-dark.min.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="../src/styles.css" />
+  </head>
+
+  <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="../src/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <header class="header">
+      <figure class="logo">
+        <!-- <img alt="Logo" src="./assets/images/primer-logo.jpg" width="200px" /> -->
+        <div class="blog-title">Primers Blog</div>
+      </figure>
+      <nav class="nav-top shadow">
+        <a href="../index.html">Home</a>
+        <a href="./devel.html">Coding</a>
+        <a href="./sports.html">Sports</a>
+        <a href="./gallery.html">Gallery</a>
+      </nav>
+    </header>
+
+    <div class="center">
+      <div id="sidebar" class="sidebar shadow">
+        <h3 class="sidebar_title">Latest Blogs</h3>
+      </div>
+
+      <main id="main" class="main shadow">
+        <article>
+          <h2 class="main_title">My primer with a little JavaScript</h2>
+          <div class="main_blog_article">
+            <p class="blog-q" style="padding-top: 0;">Small description of my primer</p>
+  
+            <p class="blog-p">My primer is mostly html with css, but for the navigation sections (except Gallery) I use some javascript to fill the sidebar and the main-section dynamically.</p>
+            <p class="blog-p">With the range-slider in the sidebar you can set the limit on how many <em>latest blogs</em> are shown in the sidebar!</p>
+            <p class="blog-q">blog-data array</p>
+            <p class="blog-p">The data is stored in an array with complex elements that contain blogentry values like <em>"date"</em>, <em>"title"</em> and <em>"short description"</em>
+            </p>            
+            <pre class="pre-bg"><code class="language-js">const blogEntries = [
+  {
+      type: 'coding',
+      date: '2022-01-17 15:35',
+      title: 'My primer with a little JavaScript',
+      short: myprimer,
+      path: '/blogs/myprimer.html',
+  },
+  {
+      type: 'sports',
+      date: '2021-12-28 12:15',
+      title: 'My running track in the northeast of BT',
+    ...     </code></pre>
+            <p class="blog-q">fill sidebar and main</p>
+            <p class="blog-p">These blog-entries I read in a loop and "fill" the sidebar and main section with a list of my blogs - sorted by date descending.</p>
+            <p class="blog-p">When the page is loaded, the functions are called</p>
+            <pre><code class="language-js">window.addEventListener("load", function(event) {
+  // sidebar data
+  setSidebarData(6)
+  pageType = $('#pageType').val() // coding or sports
+  // main section data
+  if(pageType) setMainData(pageType)
+}           </code></pre>
+            <p class="blog-p">Array sorted by <em>date</em>, then <em>limited</em> with slice()-function and then loop with forEach()</p>
+            <pre><code class="language-js">function setSidebarData(limit = 8) {
+    blogEntries
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, limit)
+        .forEach( entry => {
+    ...     </code></pre>
+            <p class="blog-p">In the loop I create html filled with the array data and add it with jquery to the sidebar</p>
+            <pre><code class="language-js"> const html = 
+  `&lt;a href="${entry.path}"&gt;&lt;section class="latest_blog"&gt;
+    &lt;h4 class="latest_blog_title"&gt;${entry.title}&lt;/h4&gt;
+    &lt;div class="latest_blog_detail"&gt;
+      &lt;div class="latest_blog_date"&gt;${entry.date}&lt;/div&gt;
+      &lt;div class="latest_blog_type"&gt;${entry.type}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;&lt;/a&gt;`
+
+  // append html with jquery
+  $('#sidebar').append(html)</code></pre>
+            <p class="blog-q">sidebar slider</p>
+            <p class="blog-p">For the range-slider in the sidebar I read the <em>onInput</em>-Event-Value of the slider (max is length of array) and reset the data in the sidebar</p>
+            <pre><code class="language-js">function setLimit() {
+    // remove data first...
+    $("#sidebar").find("a").remove()
+
+    // ... then reset it
+    setSidebarData($('#ipLimit').val())
+}</code></pre>
+            <!-- <p class="blog-p">bbb</p>
+            <pre><code class="language-js">.</code></pre> -->
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <footer class="footer shadow">
+      <nav class="nav-footer">
+        <a href="../index.html">About</a>
+        <a href="../index.html">Contact</a>
+        <a href="../index.html">Support</a>
+      </nav>
+    </footer>
+  </body>
+</html>
