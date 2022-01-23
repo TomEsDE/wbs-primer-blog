@@ -129,6 +129,9 @@ window.addEventListener("load", function(event) {
     if(pageType) setMainData(pageType)
 
     isPageLoaded = true
+
+    // set date in blog page
+    $('#mainBlogDate').text(formatDate(blogEntries[$('#arrayIdx').val()].date))
 });
 
 /**
