@@ -159,7 +159,7 @@ function setSidebarData(limit = 8) {
                 `<a href="${entry.path}"><section class="latest_blog">
                     <h4 class="latest_blog_title">${entry.title}</h4>
                     <div class="latest_blog_detail">
-                        <div class="latest_blog_date">${entry.date}</div>
+                        <div class="latest_blog_date">${formatDate(entry.date)}</div>
                         <div class="latest_blog_type">${entry.type}</div>
                     </div>
                 </section></a>`
@@ -203,7 +203,7 @@ function setMainData(type = 'all', showMore = false) {
             const html = 
                 `<a href="${entry.path}"><section class="main_blog ${even ? 'even' : 'odd'}">
                     <div class="main_blog_detail">
-                        <div class="main_blog_date">${entry.date}</div>
+                        <div class="main_blog_date">${formatDate(entry.date)}</div>
                         <div class="main_blog_type ${hideType}">${entry.type}</div>
                     </div>
                     <article>
@@ -262,4 +262,8 @@ function setLimit() {
 
     // ... then reset it
     setSidebarData($('#ipLimit').val())
+}
+
+function formatDate(date) {
+    return new Date(date).toLocaleString("de-DE", {year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})
 }
