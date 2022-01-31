@@ -31,83 +31,87 @@ const gitbranchingmodel = '<em>note: text copied from somewhere else</em><br><br
 
 const short = 'short description of the blog text';
 
+const pathGit = window.location.href.startsWith('https:') ? '/wbs-primer-blog' : ''
+
+console.log(`pathGit: ${pathGit}`);
+
 const blogEntries = [
     {
         type: 'coding',
         date: '2022-01-17 15:35',
         title: 'My primer with a little JavaScript',
         short: myprimer,
-        path: '/wbs-primer-blog/blogs/myprimer.html',
+        path: pathGit+'/blogs/myprimer.html',
     },
     {
         type: 'sports',
         date: '2021-12-28 12:15',
         title: 'My running track in the northeast of BT',
         short: lorem,
-        path: '/wbs-primer-blog/blogs/sportsblogentry.html',
+        path: pathGit+'/blogs/sportsblogentry.html',
     },
     {
         type: 'coding',
         date: '2021-12-18 18:37',
         title: 'Sort Data in an JS Array',
         short: sortjsarray,
-        path: '/wbs-primer-blog/blogs/codingblogentry.html',
+        path: pathGit+'/blogs/codingblogentry.html',
     },
     {
         type: 'coding',
         date: '2022-01-02 19:00',
         title: 'A successful Git branching model',
         short: gitbranchingmodel,
-        path: '/wbs-primer-blog/blogs/codingblogentry.html',
+        path: pathGit+'/blogs/codingblogentry.html',
     },
     {
         type: 'sports',
         date: '2021-11-12 07:55',
         title: 'Fun flat Race Bike track north of BT',
         short: lorem2,
-        path: '/wbs-primer-blog/blogs/sportsblogentry.html',
+        path: pathGit+'/blogs/sportsblogentry.html',
     },
     {
         type: 'coding',
         date: '2021-09-02 11:05',
         title: 'more coding 1',
         short: lorem,
-        path: '/wbs-primer-blog/blogs/codingblogentry.html',
+        path: pathGit+'/blogs/codingblogentry.html',
     },
     {
         type: 'sports',
         date: '2021-12-01 08:32',
         title: 'Home Workout without weights',
         short: lorem2,
-        path: '/wbs-primer-blog/blogs/sportsblogentry.html',
+        path: pathGit+'/blogs/sportsblogentry.html',
     },
     {
         type: 'coding',
         date: '2021-10-14 17:27',
         title: 'more coding 2',
         short: lorem,
-        path: '/wbs-primer-blog/blogs/codingblogentry.html',
+        path: pathGit+'/blogs/codingblogentry.html',
     },
     {
         type: 'coding',
         date: '2021-11-12 08:28',
         title: 'more coding 3',
         short: lorem,
-        path: '/wbs-primer-blog/blogs/codingblogentry.html',
+        path: pathGit+'/blogs/codingblogentry.html',
     },
     {
         type: 'sports',
         date: '2021-10-04 09:47',
         title: 'more sports',
         short: lorem,
-        path: '/wbs-primer-blog/blogs/sportsblogentry.html',
+        path: pathGit+'/blogs/sportsblogentry.html',
     },
     {
         type: 'coding',
         date: '2021-08-14 22:13',
         title: 'more coding 4',
         short: lorem,
-        path: '/wbs-primer-blog/blogs/codingblogentry.html',
+        path: pathGit+'/blogs/codingblogentry.html',
     }
 ]
 
@@ -131,7 +135,7 @@ window.addEventListener("load", function(event) {
     isPageLoaded = true
 
     // set date in blog page
-    $('#mainBlogDate').text(formatDate(blogEntries[$('#arrayIdx').val()].date))
+    $('#mainBlogDate').text(formatDate(blogEntries[$('#arrayIdx').val()]?.date))
 });
 
 /**
@@ -183,14 +187,23 @@ let newDataIdx = 3
  * @param {*} type devel | sports
  * @param {*} showMore if true, the showMore-Button was clicked
  */
-function setMainData(type = 'all', showMore = false) {
+function setMainData(type = 'all', showMore = false, isSearch = false) {
     let isData = false;
     
     // filter data by type and sort by date
-    const filtered = 
+    let filtered = 
         blogEntries
             .filter(entry => (type === 'all' || entry.type === type))
-            .sort((a, b) => new Date(b.date) - new Date(a.date));
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+        ;
+    
+    // search
+    if(isSearch) {
+        const searchText = $('#ipSearch').val().toLowerCase()
+        console.log(`searchText: ${searchText}`);
+
+        filtered = filtered.filter(entry => (entry.title.toLowerCase().indexOf(searchText) >= 0 || entry.short.toLowerCase().indexOf(searchText) >= 0))
+    }            
     
     // loop filtered blog-entries and create html to put in main-section
     filtered.forEach( (entry, index) => {
@@ -269,4 +282,22 @@ function setLimit() {
 
 function formatDate(date) {
     return new Date(date).toLocaleString("de-DE", {year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit'})
+}
+
+/**
+ * Search blogs for a specific text
+ */
+function doSearch() {
+    console.log('doSearch!');
+    // remove data first...
+    $("#mainData").find("a").remove()
+
+    $('#showMoreData').remove()
+
+    console.log(`pageType: ${pageType}`);
+
+    currDataIdx = 0
+    newDataIdx = 10
+    // ... then reset it
+    if(pageType) setMainData(pageType, false, true)
 }
