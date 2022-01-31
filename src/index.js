@@ -186,6 +186,7 @@ let newDataIdx = 3
  * 
  * @param {*} type devel | sports
  * @param {*} showMore if true, the showMore-Button was clicked
+ * @param {*} isSearch if true, include search-text
  */
 function setMainData(type = 'all', showMore = false, isSearch = false) {
     let isData = false;
@@ -202,7 +203,7 @@ function setMainData(type = 'all', showMore = false, isSearch = false) {
         const searchText = $('#ipSearch').val().toLowerCase()
         console.log(`searchText: ${searchText}`);
 
-        filtered = filtered.filter(entry => (entry.title.toLowerCase().indexOf(searchText) >= 0 || entry.short.toLowerCase().indexOf(searchText) >= 0))
+        filtered = filtered.filter(entry => (entry.title.toLowerCase().includes(searchText) || entry.short.toLowerCase().includes(searchText)))
     }            
     
     // loop filtered blog-entries and create html to put in main-section
@@ -288,13 +289,10 @@ function formatDate(date) {
  * Search blogs for a specific text
  */
 function doSearch() {
-    console.log('doSearch!');
+
     // remove data first...
     $("#mainData").find("a").remove()
-
     $('#showMoreData').remove()
-
-    console.log(`pageType: ${pageType}`);
 
     currDataIdx = 0
     newDataIdx = 10

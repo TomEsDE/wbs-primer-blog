@@ -126,6 +126,12 @@ nav form {
   margin-right: 1rem;
 }
 
+nav form button {
+  background: inherit;
+  border: none;
+  cursor: pointer;
+}
+
 .center {
   display: flex;
   margin-top: 20px;
